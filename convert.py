@@ -105,6 +105,7 @@ def convert_to_mp3(path_to_file, output_dir):
              "-y",
              "-f", format,
              "-i", "pipe:0",
+             "-af", "loudnorm",
              temp_file_caller if stream_id == 0 else temp_file_receiver),
             stdin=subprocess.PIPE
         )
@@ -114,11 +115,13 @@ def convert_to_mp3(path_to_file, output_dir):
 
     # Mix both MP3 files
     subprocess.run([    
-        "ffmpeg",
+       "ffmpeg",
         "-y",
         "-i", temp_file_caller,
         "-i", temp_file_receiver,
-        "-filter_complex", "[0:a][1:a]amix=inputs=2:duration=longest:dropout_transition=2",
+        "-filter_complex", 
+        "[0:a][1:a]amix=inputs=2:duration=longest:dropout_transition=2,"
+        "highpass=f=300, loudnorm",
         output_file
     ])
 
