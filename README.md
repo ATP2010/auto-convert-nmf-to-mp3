@@ -2,7 +2,7 @@ base on url : https://github.com/mwittenbols/NMF-audio-to-WAV-convertor
 
 tested using 
 1. Python 3.12.1
-2. file ffmpeg = https://www.gyan.dev/ffmpeg/builds/
+2. file ffmpeg = https://www.gyan.dev/ffmpeg/builds/ (place file on same folder with convert.py)
 
 How to run ?
 
